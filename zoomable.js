@@ -16,7 +16,6 @@ $.Zoomable = function (el) {
 }
 
 $.Zoomable.prototype.showFocusBox = function (e) {
-
   var left = Math.max(e.pageX - (this.focusSize / 2), 0);
   left = Math.min(left, this.xMax - this.focusSize);
   var top = Math.max(e.pageY - (this.focusSize / 2), 0);
@@ -26,18 +25,16 @@ $.Zoomable.prototype.showFocusBox = function (e) {
   if (!this.$el.find('focus-box').length) {
     this.$el.append(this.$focusBox);
   }
-
   this.showZoom(left, top);
 }
 
 $.Zoomable.prototype.showZoom = function (xDiff, yDiff) {
   var windowHeight = $(window).height();
-  var windowWidth = $(window).width();
   var str = ""
   str += Math.floor(xDiff / (this.xMax - this.focusSize) * 100);
   str += "% ";
   str += Math.floor(yDiff / (this.yMax - this.focusSize) * 100);
-  str += "%"
+  str += "%";
   this.$zoomedImage.css("width", windowHeight)
               .css("background-image", 'url(' + this.$img.attr("src") + ')')
               .css("background-size", windowHeight / this.focusSize * this.xMax)
@@ -47,7 +44,7 @@ $.Zoomable.prototype.showZoom = function (xDiff, yDiff) {
   }
 };
 
-$.Zoomable.prototype.hideFocusBox = function (e) {
+$.Zoomable.prototype.hideFocusBox = function () {
   this.$focusBox.remove();
   this.$zoomedImage.remove();
 }
